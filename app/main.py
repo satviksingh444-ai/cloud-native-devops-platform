@@ -26,6 +26,8 @@ def create_user(user: User):
 )
     db.add(db_user)
     db.commit()
+
+    db.close()
     return {
         "message": "User created",
         "user": user
