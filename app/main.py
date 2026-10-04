@@ -23,12 +23,20 @@ def create_user(user: User):
     db_user = UserDB(
     name=user.name,
     age=user.age
-)
+    )
+
     db.add(db_user)
     db.commit()
-
     db.close()
     return {
         "message": "User created",
         "user": user
     }
+@app.get("/users")
+def get_users():
+    db = SessionLocal()
+    users = db.query(UserDB).all()
+    return users 
+    
+
+    
