@@ -36,6 +36,7 @@ def create_user(user: User):
 def get_users():
     db = SessionLocal()
     users = db.query(UserDB).all()
+    db.close()
     return users 
     
 
