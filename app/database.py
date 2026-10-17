@@ -1,6 +1,10 @@
-from sqlalchemy import create_engine ,Column, Integer, String
-from sqlalchemy.orm import declarative_base ,sessionmaker
-engine = create_engine("sqlite:///./data/database.db")
+from pathlib import Path
+from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.orm import declarative_base, sessionmaker
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATABASE_URL = f"sqlite:///{BASE_DIR / 'data' / 'database.db'}"
+engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
 
